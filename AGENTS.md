@@ -1,9 +1,93 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# CampusBite AI Development Instructions
 
-# This is NOT the Next.js you know
+Read design.md before frontend work.
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+## Priority
 
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+1. Working application
+2. Dataset accuracy
+3. Simple architecture
+4. Usability
+5. Visual polish
 
-<!-- END:nextjs-agent-rules -->
+## Technology
+
+Use the existing project:
+
+- Next.js
+- TypeScript
+- React
+- Gemini API using @google/genai
+- csv-parse
+- CSS
+
+Do not replace the framework.
+
+## Keep It Simple
+
+Do not add:
+
+- database
+- authentication
+- accounts
+- admin dashboard
+- unnecessary state management
+- unnecessary libraries
+- unnecessary abstraction
+
+## Dataset
+
+All factual food information must come from:
+
+data/menu-kantin.csv
+
+Never invent:
+
+- menu
+- price
+- stall
+- description
+- image
+
+Missing prices must not be interpreted as zero or free.
+
+## Images
+
+Menu images are available under:
+
+public/menu-images/
+
+Normalize CSV image paths when needed.
+
+## Gemini
+
+Gemini API calls must happen server-side.
+
+Read the API key from:
+
+GEMINI_API_KEY
+
+Never expose the API key to client-side JavaScript.
+
+## Agentic Behavior
+
+Gemini should determine which menu tool is needed.
+
+Available capabilities should include:
+
+- search menu
+- filter by budget
+- filter by stall
+- find cheapest or most expensive
+- compare menu
+- list stalls
+
+Tool execution must use deterministic application code and the CSV dataset.
+
+## Quality
+
+Do not rewrite working code without reason.
+
+Run validation after meaningful changes.
+
+Keep implementation easy to understand.

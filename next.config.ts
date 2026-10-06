@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  agentRules: false,
+  outputFileTracingIncludes: {
+    "/api/chat": ["./data/menu-kantin.csv", "./public/menu-images/**/*"],
+  },
 };
 
 export default nextConfig;

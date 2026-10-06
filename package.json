@@ -6,9 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:menu": "node --experimental-strip-types scripts/check-menu.ts",
+    "test:chat": "node scripts/check-chat.mjs"
   },
   "dependencies": {
+    "@google/genai": "^2.27.0",
+    "csv-parse": "^7.0.3",
     "next": "16.3.8",
     "react": "19.2.8",
     "react-dom": "19.2.8"

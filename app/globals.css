@@ -1,49 +1,110 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --ink: #262920;
+  --muted: #65685e;
+  --accent: #aa461f;
+  --line: #dedfd5;
+  --paper: #fafaf5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
-}
-
-html,
+* { box-sizing: border-box; }
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: default; opacity: .6; }
+button:focus-visible, a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+.site { max-width: 1200px; margin: auto; padding: 0 40px; }
+.header {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
 }
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.brand { font-size: 22px; font-weight: 700; letter-spacing: -.7px; padding: 10px 0; }
+.brand span { font-size: 13px; font-weight: 400; letter-spacing: 0; color: var(--muted); }
+.header-note { color: var(--muted); font-size: 13px; }
+.search-section { padding: 32px 0 26px; }
+h1 { font-size: 30px; line-height: 1.2; letter-spacing: -.8px; margin: 0 0 9px; font-weight: 600; }
+.subtitle { color: var(--muted); line-height: 1.5; margin: 0 0 20px; font-size: 14px; }
+.search-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  padding: 7px;
+  border: 1px solid #a4a799;
+  border-radius: 5px;
+  background: white;
+}
+.search-form:focus-within { outline: 2px solid var(--accent); outline-offset: 3px; }
+.search-form input { width: 100%; min-width: 0; border: 0; outline: none; padding: 14px 13px; color: var(--ink); background: transparent; font-size: 18px; }
+.search-form input::placeholder { color: var(--muted); opacity: 1; }
+.search-form button { min-height: 48px; padding: 12px 27px; border: 0; border-radius: 3px; background: var(--accent); color: white; font-weight: 600; white-space: nowrap; }
+.suggestions { display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; margin-top: 8px; font-size: 12px; color: var(--muted); }
+.suggestions button { min-height: 44px; background: none; padding: 10px 0; border: 0; color: var(--muted); text-align: left; text-decoration: underline; text-underline-offset: 4px; }
+.results-section { border-top: 1px solid var(--line); padding: 20px 0 36px; }
+.section-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 20px; margin-bottom: 20px; }
+h2 { font-size: 18px; line-height: 1.4; margin: 0; font-weight: 600; }
+.text-button { min-height: 44px; border: 0; background: none; padding: 10px 0; color: var(--accent); font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
+.menu-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; }
+.menu-item { min-width: 0; }
+.food-image { position: relative; aspect-ratio: 4 / 3; background: #edede4; border-radius: 3px; overflow: hidden; display: grid; place-items: center; color: var(--muted); font-size: 13px; }
+.food-image img { object-fit: cover; }
+.menu-item h3 { font-size: 20px; font-weight: 600; line-height: 1.35; letter-spacing: -.25px; margin: 14px 0 6px; overflow-wrap: anywhere; }
+.price { font-size: 16px; font-weight: 600; line-height: 1.4; margin: 0 0 5px; font-variant-numeric: tabular-nums; }
+.price-unknown { color: var(--muted); font-size: 14px; font-weight: 400; }
+.stall { font-size: 13px; line-height: 1.5; margin: 0; color: var(--muted); }
+.reason { font-size: 13px; line-height: 1.6; color: var(--muted); margin: 10px 0 0; overflow-wrap: anywhere; }
+.menu-description { color: var(--muted); font-size: 12px; line-height: 1.6; margin-top: 6px; }
+.menu-description summary { cursor: pointer; padding: 10px 0; min-height: 40px; }
+.menu-description p { margin: 0; overflow-wrap: anywhere; }
+.answer { font-size: 14px; line-height: 1.7; max-width: 80ch; margin: 0; overflow-wrap: anywhere; }
+.results-note { color: var(--muted); margin-top: 28px; }
+.status-state, .empty-state, .error-state { padding: 15px 0 24px; }
+.status-state p, .empty-state > p:last-child, .error-state p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 12px 0 0; }
+.error-state h3 { font-size: 16px; margin: 0; font-weight: 600; }
+.agent-trace { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 6px; font-size: 12px; color: var(--muted); }
+.agent-trace summary { cursor: pointer; padding: 14px 0; min-height: 44px; }
+.agent-trace ol { padding-left: 22px; }
+.agent-trace li { padding: 10px 0; }
+.agent-trace li span { display: block; margin-top: 5px; }
+.agent-trace code { display: block; margin-top: 7px; white-space: pre-wrap; overflow-wrap: anywhere; }
+footer { border-top: 1px solid var(--line); padding: 20px 0 28px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+footer p { max-width: 80ch; margin: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+@media (hover: hover) {
+  .suggestions button:hover, .menu-description summary:hover, .agent-trace summary:hover { color: var(--ink); }
+  .text-button:hover { color: var(--ink); }
+}
+@media (max-width: 960px) {
+  .site { padding: 0 24px; }
+  .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .site { padding: 0 16px; }
+  .header { min-height: 60px; }
+  .header-note { display: none; }
+  .search-section { padding: 24px 0 18px; }
+  h1 { font-size: 26px; }
+  .subtitle { margin-bottom: 16px; }
+  .search-form { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .search-form input { font-size: 16px; padding: 12px 8px; }
+  .search-form button { min-height: 44px; }
+  .suggestions { gap: 0 14px; }
+  .results-section { padding-top: 18px; }
+  .section-heading { margin-bottom: 16px; }
+  .menu-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .food-image { aspect-ratio: 4 / 3; }
+  .menu-item h3 { margin-top: 12px; }
 }
